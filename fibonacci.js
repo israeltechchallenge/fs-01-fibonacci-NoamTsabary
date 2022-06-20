@@ -1,4 +1,6 @@
-let n = Math.floor(Math.random() * 11);
+//apparently already did 2 while I did 1 so just making a change for the commit sake
+
+let n = Math.floor(Math.random() * 12);
 
 forLoop = (n) => {
     let fibIndex = [0, 1];
