@@ -1,28 +1,34 @@
-const forLoop = (n) => {
-    let fibIndex = [0, 1];
-      for (let i = 2; i <= n; i++) {fibIndex[i] = fibIndex[i - 2] + fibIndex[i - 1];}
-    return fibIndex[n];
-};
-
-/* stole this one from your server. so don't give me credit :)
-but it just runs much better than the one I came up with */
-function recursion (n, obj = {}) {
-  if (n in obj) return obj[n];
-  if (n === 0) return 0;
-  if (n < 3) return 1;
-  return (obj[n] = recursion(n - 1, obj) + recursion(n - 2, obj));
-}
-
 const fetchResult = async (n) => {
   const response = await fetch(`${baseUrl}${n}`);
-  const data = await response.json();
-  return data.result;
+  const contentType = response.headers.get('content-type');
+  if (contentType.includes('application/json')) {
+    const data = await response.json();
+    return data.result;
+  } else {
+    const data = await response.text();
+    result.classList.add("red")
+    return `Server Error: ${data}`
+  }
 }
 
-btn.addEventListener("click", async (e) => {
+const runFibonacci = async (e) => {
   e.preventDefault();
-  const output = await fetchResult(input.value);
-  print ("#result", output)
-})
+  reset()
+  toggleClass(".spinner-border", "d-none")
+  if (input.value > 50) {
+    toggleClass(".spinner-border", "d-none");
+    limitError();
+    return
+  }
+  else {
+    const output = await fetchResult(input.value);
+    toggleClass(".spinner-border", "d-none")
+    print("#result", output);
+  }
+}
+
+btn.addEventListener("click", runFibonacci); 
+
+
 
 

@@ -1,0 +1,14 @@
+:root {
+    --errBG: #f2dede;
+    --errorText: #a94442;
+}
+
+.alert {
+    background-color: var(--errBG);
+    color: var(--errorText);
+}
+
+.red {
+    color: var(--errorText);
+    text-decoration: none;
+}
