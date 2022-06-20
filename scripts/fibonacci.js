@@ -6,7 +6,6 @@ const forLoop = (n) => {
 
 /* stole this one from your server. so don't give me credit :)
 but it just runs much better than the one I came up with */
-
 function recursion (n, obj = {}) {
   if (n in obj) return obj[n];
   if (n === 0) return 0;
@@ -14,9 +13,15 @@ function recursion (n, obj = {}) {
   return (obj[n] = recursion(n - 1, obj) + recursion(n - 2, obj));
 }
 
-btn.addEventListener("click", (e) => {
+const fetchResult = async (n) => {
+  const response = await fetch(`${baseUrl}${n}`);
+  const data = await response.json();
+  return data.result;
+}
+
+btn.addEventListener("click", async (e) => {
   e.preventDefault();
-  const output = recursion(input.value);
+  const output = await fetchResult(input.value);
   print ("#result", output)
 })
 
