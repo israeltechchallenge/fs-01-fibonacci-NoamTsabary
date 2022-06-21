@@ -11,25 +11,45 @@ function recursion (n, obj = {}) {
   return (obj[n] = recursion(n - 1, obj) + recursion(n - 2, obj));
 }
 
-const print = (location, printed) => {
-    document.querySelector(location).innerText = (printed)
+const print = (identifier, printed) => {
+    document.querySelector(identifier).innerText = (printed)
 }
 
-const toggleClass = (location, theClass) => {
-    let where = document.querySelector(location);
-    if (where.classList.contains(theClass))
-        where.classList.remove(theClass);
-    else where.classList.add(theClass);
-}
-
-const limitError = () => {
-    document.querySelector(".alert").classList.remove("d-none")
+const switchClass = (identifier, theClass, bool) => {
+  let where = document.querySelector(identifier);
+  bool ? where.classList.add(theClass) : where.classList.remove(theClass)
 }
 
 const reset = () => {
-    document.querySelector(".alert").classList.add("d-none");
-    result.classList.remove("red");
+    switchClass(".alert", "d-none", true)
+    switchClass("#result", "red", false)
     print("#result", "");
+}
+
+const createResultsHTML = (resultsLog) => {
+  let fragment = new DocumentFragment;
+  for (let i of resultsLog) {
+    const line = document.createElement("div")
+    line.classList.add("line", "p-2");
+    
+    const spanA = document.createElement("span");
+    spanA.innerText = `The Fibonacci of `
+    const boldNum = document.createElement("strong");
+    boldNum.innerText = i.number;
+    const spanB = document.createElement("span");
+    spanB.innerText = ` is `;
+    const boldRes = document.createElement("strong");
+    boldRes.innerText = i.result;
+    const spanC = document.createElement("span");
+    spanC.innerText = ". Calculated at: " 
+    const spanD = document.createElement("span");
+    spanD.innerText = new Date(i.createdDate);
+
+    line.append(spanA, boldNum, spanB, boldRes, spanC, spanD)
+    fragment.append(line);
+  }
+  switchClass(".resultSpinner", "d-none", true)
+  document.querySelector("#results").append(fragment);
 }
 
 input.addEventListener("keyup", () => {

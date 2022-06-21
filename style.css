@@ -3,6 +3,14 @@
     --errorText: #a94442;
 }
 
+body, html {
+    margin: 1% 2%;
+}
+
+.line {
+    border-bottom: 1px solid black;
+    width: fit-content;
+}
 .alert {
     background-color: var(--errBG);
     color: var(--errorText);
@@ -11,4 +19,10 @@
 .red {
     color: var(--errorText);
     text-decoration: none;
+}
+
+.resultSpinner {
+    position: relative;
+    top: 10px;
+    left: 10px;
 }

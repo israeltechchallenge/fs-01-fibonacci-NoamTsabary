@@ -6,26 +6,36 @@ const fetchResult = async (n) => {
     return data.result;
   } else {
     const data = await response.text();
-    result.classList.add("red")
+    switchClass("#result", "red", true)
     return `Server Error: ${data}`
   }
 }
 
 const runFibonacci = async (e) => {
   e.preventDefault();
-  reset()
-  toggleClass(".spinner-border", "d-none")
+  reset();
+  switchClass(".topSpinner", "d-none", false)
   if (input.value > 50) {
-    toggleClass(".spinner-border", "d-none");
-    limitError();
+    switchClass(".topSpinner", "d-none", true);
+    switchClass(".alert", "d-none", false)
     return
   }
   else {
     const output = await fetchResult(input.value);
-    toggleClass(".spinner-border", "d-none")
+    switchClass(".topSpinner", "d-none", true);
     print("#result", output);
+    loadResults();
   }
 }
+
+const loadResults = async () => {
+  switchClass(".resultSpinner", "d-none", false)
+  let response = await fetch(resultsUrl);
+  let data = await response.json();
+  createResultsHTML(data.results);
+};
+
+loadResults();
 
 btn.addEventListener("click", runFibonacci); 
 
