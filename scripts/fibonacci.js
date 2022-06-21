@@ -19,13 +19,17 @@ const runFibonacci = async (e) => {
     switchClass(".topSpinner", "d-none", true);
     switchClass(".alert", "d-none", false)
     return
-  }
-  else {
-    const output = await fetchResult(input.value);
-    switchClass(".topSpinner", "d-none", true);
-    print("#result", output);
+  } 
+  let checkbox = document.querySelector("#flexCheckDefault");
+  let output;
+  if (checkbox.checked) {
+    output = await fetchResult(input.value);
     loadResults();
+  } else {
+    output = forLoop(input.value);
   }
+  switchClass(".topSpinner", "d-none", true);
+  print("#result", output);
 }
 
 const loadResults = async () => {
