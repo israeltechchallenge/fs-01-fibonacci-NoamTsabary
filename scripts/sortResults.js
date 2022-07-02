@@ -28,4 +28,5 @@ const sortResults = (key) => {
   
   document.getElementById('test').addEventListener('click', (e) => {
     sortResults(e.target.id);
+    // document.getElementById('dropdownMenuButton1').innerText = e.target.innerText;
   });

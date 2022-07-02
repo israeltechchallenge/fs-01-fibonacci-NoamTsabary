@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
+
+app.use(cors());
 
 resultsArray = [];
 
@@ -14,8 +17,8 @@ const forLoop = (n) => {
 app.get("/fibonacci/:number", async (req, res) => {
     const number = +req.params.number;
     const result = forLoop(number);
-    const obj = { result } 
-    resultsArray.push(result);
+    const obj = { number, result, createdDate: Date.now() }
+    resultsArray.push(obj);
     res.send(obj);
 
 });

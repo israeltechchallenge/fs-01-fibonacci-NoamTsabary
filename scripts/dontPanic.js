@@ -8,6 +8,7 @@ const dontPanic = async () => {
     let flashRepeat = 5;
     let repeatKey = (flashTime*2)*flashRepeat + 400;
     panic(flashTime, repeatKey, "url('./images/don-t-panic-word-white-background-d-rendering-169138542.jpg')");
+    return
   };
   
   const panic = async (timeout, repeats, path) => {

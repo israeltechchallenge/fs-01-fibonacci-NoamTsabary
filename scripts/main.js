@@ -43,8 +43,8 @@ const loadResults = async () => {
   try {
     let response = await fetch(resultsUrl);
     let data = await response.json();
-    createResultsHTML(data.results);
-    resultsList = data.results;
+    createResultsHTML(data);
+    resultsList = data;
     document.getElementById('counter').textContent = `No. of calculations stored: ${resultsList.length}`;
   } catch(err) {
     console.error("loadResults:", err);
