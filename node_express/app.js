@@ -1,10 +1,14 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const path = require("path");
+app.use(express.static(path.join(__dirname,'..', '..', 'fs-01-fibonacci-NoamTsabary')));
+
+console.log(__dirname);
+
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 app.use(cors());
-
 
 MongoClient.connect(url, function(err, db) {
     if (err) throw err;
