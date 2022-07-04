@@ -1,0 +1,47 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+* {
+    color: #373A3C;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.line {
+    border-bottom: 1px solid #373A3C;
+    width: fit-content;
+}
+.alert {
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #EBCCCC;
+}
+
+#dropdownMenuButton1 {
+    background-color: #E6E6E6;
+    border-color: #CCCCCC;
+    color: #373A3C;
+}
+
+.red {
+    color: #D9534F;
+    text-decoration: none;
+}
+
+.resultSpinner {
+    position: relative;
+    top: 10px;
+    left: 10px;
+}
+
+.input-red, .input-red:focus{
+    border-color:#D9534F; 
+    box-shadow: none;
+     -webkit-box-shadow: none;
+    color: #D9534F
+} 
